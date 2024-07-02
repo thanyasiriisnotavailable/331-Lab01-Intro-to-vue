@@ -24,13 +24,16 @@
         <div class="product-info">
             <h3 v-if="onSale" :style="{ color: 'red' }">The product is on sale !!</h3>
             <h1><a :href="productUrl">{{product}}</a></h1>
-            <p v-if="inventory > 10">In Stock</p>
-            <p v-else-if="inventory <= 10 && inventory > 0">Almost out of stock</p>
-            <p v-else>Out of Stock</p>
+            <button class="button" @click="toggleStock">Toggle Status</button>
+            <div style="display: flex;">
+                <p v-if="inStock && inventory > 10">In Stock</p>
+                <p v-else-if="inStock && inventory <= 10">Almost out of stock</p>
+                <p v-else>Out of Stock</p>
+            </div>
             <ul>
                 <li v-for="detail in details">{{detail}}</li>
             </ul>
-            <div v-for="variant in variants" :key="variant.id">
+            <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">
                 {{variant.color}}
             </div>
             <div style="display: flex;">
