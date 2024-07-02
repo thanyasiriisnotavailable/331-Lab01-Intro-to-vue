@@ -55,6 +55,9 @@
             <div v-for="(variant,index) in variants" :key="variant.id" @mouseover="updateVariant(index)" 
                 class="color-circle" :style="{backgroundColor: variant.color}">
             </div>
+            <div v-for="(variant, index) in variants" :key="variant.id">
+                <div v-if="variant.isOnSale">{{ onSaleNoti }}</div>
+            </div>              
             <div style="display: flex;">
                 <div v-for="size in sizes" style="margin-right: 10px;">{{size}}</div>
             </div>

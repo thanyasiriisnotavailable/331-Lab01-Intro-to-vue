@@ -10,15 +10,15 @@ createApp({
         const des2 = ref("From daily training to the big occasions, adidas crew length socks keep you moving comfortably. They wrap around the arches of your feet and cushion high-pressure areas at the heels and toes. So you stay focused on performance, whether you're running, lifting or playing sports.")
         //const inStock = ref(true)
         const inventory = ref(100)
-        const onSale = (true)
+        //const onSale = (true)
         const details = ref([
             '50% cotton',
             '30% wool',
             '20% polyester'
         ])
         const variants = ref([
-            { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50},
-            { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 0}
+            { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50, isOnSale: true},
+            { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 0, isOnSale: false}
         ])
         const selectedVariant = ref(0)
         const sizes = ref([
@@ -47,6 +47,12 @@ createApp({
         const inStock = computed(() => {
             return variants.value[selectedVariant.value].quantity
         })
+        const onSale = computed(() => {
+            return variants.value[selectedVariant.value].isOnSale
+        })
+        const onSaleNoti = computed(() => {
+            return brand.value + ' ' + product.value + ' is on sale'
+        })
         return {
             title,
             productUrl,
@@ -63,7 +69,8 @@ createApp({
             addToCart,
             updateImage,
             toggleStock,
-            updateVariant
+            updateVariant,
+            onSaleNoti
         }
     }
 }).mount('#app')
