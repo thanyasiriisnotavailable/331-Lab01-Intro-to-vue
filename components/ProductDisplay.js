@@ -16,6 +16,7 @@ const productDisplay = {
                 <p v-if="inStock && inventory > 10">In Stock</p>
                 <p v-else-if="inStock && inventory <= 10">Almost out of stock</p>
                 <p v-else>Out of Stock</p>
+                <p>&emsp;Shipping: {{shipping}}</p>
             </div>
             <ul>
                 <li v-for="detail in details">{{detail}}</li>
@@ -35,7 +36,17 @@ const productDisplay = {
         </div>
     </div>
     `,
-    setup() {
+    props: {
+        premium: Boolean
+    },
+    setup(props) {
+        const shipping = computed(() => {
+                if(props.premium) {
+                    return 'Free'
+                } else {
+                    return 30
+                }
+        })
         const product = ref('Boots');
         const brand = ref('SE 331');
         const productUrl = ref('https://www.camt.cmu.ac.th');
@@ -111,7 +122,8 @@ const productDisplay = {
             updateImage,
             toggleStock,
             updateVariant,
-            onSaleNoti
+            onSaleNoti,
+            shipping
         }
     }
 }
