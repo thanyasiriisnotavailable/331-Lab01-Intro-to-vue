@@ -31,8 +31,6 @@ const productDisplay = {
                 <div v-for="size in sizes" style="margin-right: 10px;">{{size}}</div>
             </div>
             <button class="button" :disabled="!inStock" @click="addToCart" :class="{disabledButton: !inStock}">Add To Cart</button>
-            <h2>{{des1}}</h2>
-            <p>{{des2}}</p>
         </div>
     </div>
     `,
@@ -53,11 +51,7 @@ const productDisplay = {
         const des1 = ref("SUPPORTIVE SOCKS MADE WITH A BLEND OF RECYCLED AND RENEWABLE MATERIALS.");
         const des2 = ref("From daily training to the big occasions, adidas crew length socks keep you moving comfortably. They wrap around the arches of your feet and cushion high-pressure areas at the heels and toes. So you stay focused on performance, whether you're running, lifting or playing sports.");
         const inventory = ref(100);
-        const details = ref([
-            '50% cotton',
-            '30% wool',
-            '20% polyester'
-        ]);
+        
         const variants = ref([
             { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50, isOnSale: true},
             { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 0, isOnSale: false}
@@ -114,7 +108,6 @@ const productDisplay = {
             inStock,
             inventory,
             onSale,
-            details,
             variants,
             sizes,
             cart,
